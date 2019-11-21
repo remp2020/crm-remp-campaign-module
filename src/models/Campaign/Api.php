@@ -2,6 +2,7 @@
 
 namespace Crm\RempCampaignModule\Models\Campaign;
 
+use Crm\ApplicationModule\Tests\NowTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Nette\Utils\Json;
@@ -10,11 +11,13 @@ use Tracy\ILogger;
 
 class Api
 {
+    use NowTrait;
+
     const BANNERS = 'api/banners';
 
     private $client;
 
-    private $now;
+    private $now; // signalizing there is $now variable when using NowTrait
 
     public function __construct($campaignHost, $apiToken)
     {
@@ -53,11 +56,7 @@ class Api
     public function showOneTimeBanner($userId, $bannerId, $expiresInMinutes): bool
     {
         try {
-            $now = clone $this->now;
-            if (!$now) {
-                $now = new DateTime('now');
-            }
-
+            $now = $this->getNow();
             $expiresAt = $now->add(new \DateInterval("PT{$expiresInMinutes}M"));
 
             $payload = [
