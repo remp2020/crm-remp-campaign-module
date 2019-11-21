@@ -1,0 +1,14 @@
+parameters:
+	remp:
+		apiToken: @environmentConfig::get('REMP_API_TOKEN')
+		campaign:
+			host: @environmentConfig::get('REMP_CAMPAIGN_HOST')
+
+services:
+	moduleManager:
+		setup:
+			- addModule(Crm\RempCampaignModule\RempCampaignModule())
+
+	- Crm\RempCampaignModule\Api\ListBannersHandler
+	- Crm\RempCampaignModule\Events\BannerHandler
+	- Crm\RempCampaignModule\Models\Campaign\Api(%remp.campaign.host%, %remp.apiToken%)

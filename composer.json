@@ -1,0 +1,18 @@
+{
+  "name": "remp/crm-remp-campaign-module",
+  "description": "CRM REMP Campaign Module",
+  "version": "0.0.1",
+  "type": "library",
+  "homepage": "https://remp2020.com",
+  "license": "MIT",
+  "require": {
+    "php": "^7.1"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Crm\\RempCampaignModule\\": "src/"
+    },
+    "classmap": ["src/"]
+  }
+}
