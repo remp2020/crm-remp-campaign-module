@@ -17,8 +17,6 @@ class Api
 
     private $client;
 
-    private $now; // signalizing there is $now variable when using NowTrait
-
     public function __construct($campaignHost, $apiToken)
     {
         $this->client = new Client([
