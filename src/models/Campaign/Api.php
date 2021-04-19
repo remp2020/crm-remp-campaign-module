@@ -5,6 +5,7 @@ namespace Crm\RempCampaignModule\Models\Campaign;
 use Crm\ApplicationModule\NowTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Nette\Http\IResponse;
 use Nette\Utils\Json;
 use Tracy\Debugger;
 use Tracy\ILogger;
@@ -13,7 +14,7 @@ class Api
 {
     use NowTrait;
 
-    const BANNERS = 'api/banners';
+    public const BANNERS = 'api/banners';
 
     private $client;
 
@@ -40,6 +41,16 @@ class Api
     public static function showOneTimeBannerUriPath($bannerId)
     {
         return "api/banners/$bannerId/one-time-display";
+    }
+
+    public static function segmentCacheAddUserUriPath(string $segmentCode): string
+    {
+        return "api/segment-cache/provider/crm_segment/code/{$segmentCode}/add-user";
+    }
+
+    public static function segmentCacheRemoveUserUriPath(string $segmentCode): string
+    {
+        return "api/segment-cache/provider/crm_segment/code/{$segmentCode}/remove-user";
     }
 
     /**
@@ -87,6 +98,60 @@ class Api
             Debugger::log($e->getMessage(), ILogger::ERROR);
             Debugger::log($e->getResponse()->getBody()->getContents(), ILogger::INFO);
             return [];
+        }
+    }
+
+    public function segmentCacheAddUser(int $userId, string $segmentCode): bool
+    {
+        try {
+            $this->client->post(self::segmentCacheAddUserUriPath($segmentCode), [
+                'json' => [
+                    'user_id' => $userId,
+                    'segment_code' => $segmentCode,
+                ],
+            ]);
+            return true;
+        } catch (ClientException $e) {
+            if ($e->getResponse() === null) {
+                Debugger::log($e, ILogger::ERROR);
+                return false;
+            }
+
+            if ($e->getResponse()->getStatusCode() === IResponse::S404_NOT_FOUND) {
+                // no campaign is active with this segment in this moment; segment's cache will reload on activation
+                return false;
+            }
+
+            Debugger::log($e->getMessage(), ILogger::ERROR);
+            Debugger::log($e->getResponse()->getBody()->getContents(), ILogger::INFO);
+            return false;
+        }
+    }
+
+    public function segmentCacheRemoveUser(int $userId, string $segmentCode): bool
+    {
+        try {
+            $this->client->post(self::segmentCacheRemoveUserUriPath($segmentCode), [
+                'json' => [
+                    'user_id' => $userId,
+                    'segment_code' => $segmentCode,
+                ],
+            ]);
+            return true;
+        } catch (ClientException $e) {
+            if ($e->getResponse() === null) {
+                Debugger::log($e, ILogger::ERROR);
+                return false;
+            }
+
+            if ($e->getResponse()->getStatusCode() === IResponse::S404_NOT_FOUND) {
+                // no campaign is active with this segment in this moment; segment's cache will reload on activation
+                return false;
+            }
+
+            Debugger::log($e->getMessage(), ILogger::ERROR);
+            Debugger::log($e->getResponse()->getBody()->getContents(), ILogger::INFO);
+            return false;
         }
     }
 }
