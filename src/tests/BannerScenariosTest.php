@@ -83,10 +83,9 @@ class BannerScenariosTest extends BaseTestCase
 
         // Run Hermes + Dispatcher
         $this->dispatcher->handle(); // run Hermes to create trigger job
-        $this->engine->run(true); // process trigger, finish its job and create banner job
-        $this->engine->run(true); // banner job should be scheduled
+        $this->engine->run(3); // process trigger, finish its job and create banner job | banner job should be scheduled
         $this->dispatcher->handle(); // run banner job in Hermes
-        $this->engine->run(true); // job should be deleted
+        $this->engine->run(1); // job should be deleted
 
         // Check banner request sent to Campaign API
         $this->assertCount(1, $container);
