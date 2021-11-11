@@ -29,6 +29,14 @@ class BannerScenariosTest extends BaseTestCase
         $this->campaignApi = $this->inject(Api::class);
     }
 
+    public function tearDown(): void
+    {
+        // reset NOW; it affects tests run after this class
+        $this->campaignApi->setNow(null);
+
+        parent::tearDown();
+    }
+
     public function testUserCreatedBannerScenario()
     {
         $expiresInMinutes = 45;

@@ -53,15 +53,6 @@ class Api
         return "api/segment-cache/provider/crm_segment/code/{$segmentCode}/remove-user";
     }
 
-    /**
-     * Useful for testing
-     * @param \DateTime $now
-     */
-    public function setNow(\DateTime $now)
-    {
-        $this->now = $now;
-    }
-
     public function showOneTimeBanner($userId, $bannerId, $expiresInMinutes): bool
     {
         try {
