@@ -16,7 +16,7 @@ use Crm\ScenariosModule\Repository\TriggersRepository;
 use Crm\ScenariosModule\ScenariosModule;
 use Crm\SubscriptionsModule\Events\NewSubscriptionEvent;
 use Crm\SubscriptionsModule\Events\SubscriptionEndsEvent;
-use Crm\UsersModule\Events\UserCreatedEvent;
+use Crm\UsersModule\Events\UserRegisteredEvent;
 use Crm\UsersModule\Repository\UsersRepository;
 use Kdyby\Translation\Translator;
 use League\Event\Emitter;
@@ -73,7 +73,7 @@ abstract class BaseTestCase extends DatabaseTestCase
 
         // Events are not automatically registered, we need to register them manually for tests
         $eventsStorage = $this->inject(EventsStorage::class);
-        $eventsStorage->register('user_created', UserCreatedEvent::class, true);
+        $eventsStorage->register('user_registered', UserRegisteredEvent::class, true);
         $eventsStorage->register('new_subscription', NewSubscriptionEvent::class, true);
         $eventsStorage->register('subscription_ends', SubscriptionEndsEvent::class, true);
         $eventsStorage->register('recurrent_payment_renewed', RecurrentPaymentRenewedEvent::class, true);
