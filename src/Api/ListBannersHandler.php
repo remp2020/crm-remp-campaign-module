@@ -17,7 +17,7 @@ class ListBannersHandler extends ApiHandler
         $this->campaignApi = $campaignApi;
     }
 
-    public function params()
+    public function params(): array
     {
         return [];
     }
