@@ -4,7 +4,7 @@ namespace Crm\RempCampaignModule\Api;
 
 use Crm\ApiModule\Api\ApiHandler;
 use Crm\ApiModule\Api\JsonResponse;
-use Crm\ApiModule\Authorization\ApiAuthorizationInterface;
+use Crm\ApiModule\Response\ApiResponseInterface;
 use Crm\RempCampaignModule\Models\Campaign\Api;
 use Nette\Http\Response;
 
@@ -22,11 +22,8 @@ class ListBannersHandler extends ApiHandler
         return [];
     }
 
-    /**
-     * @param ApiAuthorizationInterface $authorization
-     * @return \Nette\Application\Response
-     */
-    public function handle(ApiAuthorizationInterface $authorization)
+
+    public function handle(array $params): ApiResponseInterface
     {
         $banners = [];
         foreach ($this->campaignApi->listBanners() as $banner) {
