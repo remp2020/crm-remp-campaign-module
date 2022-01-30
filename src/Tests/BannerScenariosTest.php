@@ -37,7 +37,7 @@ class BannerScenariosTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testUserCreatedBannerScenario()
+    public function testUserRegisteredBannerScenario()
     {
         $expiresInMinutes = 45;
 
@@ -49,7 +49,7 @@ class BannerScenariosTest extends BaseTestCase
                     'name' => '',
                     'type' => TriggersRepository::TRIGGER_TYPE_EVENT,
                     'id' => 'trigger1',
-                    'event' => ['code' => 'user_created'],
+                    'event' => ['code' => 'user_registered'],
                     'elements' => ['element_banner']
                 ])
             ],
