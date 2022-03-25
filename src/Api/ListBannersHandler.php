@@ -3,10 +3,10 @@
 namespace Crm\RempCampaignModule\Api;
 
 use Crm\ApiModule\Api\ApiHandler;
-use Crm\ApiModule\Api\JsonResponse;
-use Crm\ApiModule\Response\ApiResponseInterface;
 use Crm\RempCampaignModule\Models\Campaign\Api;
 use Nette\Http\Response;
+use Tomaj\NetteApi\Response\JsonApiResponse;
+use Tomaj\NetteApi\Response\ResponseInterface;
 
 class ListBannersHandler extends ApiHandler
 {
@@ -23,7 +23,7 @@ class ListBannersHandler extends ApiHandler
     }
 
 
-    public function handle(array $params): ApiResponseInterface
+    public function handle(array $params): ResponseInterface
     {
         $banners = [];
         foreach ($this->campaignApi->listBanners() as $banner) {
@@ -32,11 +32,10 @@ class ListBannersHandler extends ApiHandler
                 'name' => $banner->name,
             ];
         }
-        $response = new JsonResponse([
+        $response = new JsonApiResponse(Response::S200_OK, [
             'status' => 'ok',
             'banners' => $banners,
         ]);
-        $response->setHttpCode(Response::S200_OK);
         return $response;
     }
 }
