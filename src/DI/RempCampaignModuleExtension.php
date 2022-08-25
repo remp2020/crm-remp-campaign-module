@@ -2,10 +2,9 @@
 
 namespace Crm\RempCampaignModule\DI;
 
-use Kdyby\Translation\DI\ITranslationProvider;
 use Nette\DI\CompilerExtension;
 
-final class RempCampaignModuleExtension extends CompilerExtension implements ITranslationProvider
+final class RempCampaignModuleExtension extends CompilerExtension
 {
     public function loadConfiguration()
     {
@@ -13,14 +12,5 @@ final class RempCampaignModuleExtension extends CompilerExtension implements ITr
         $this->compiler->loadDefinitionsFromConfig(
             $this->loadFromFile(__DIR__.'/../config/config.neon')['services']
         );
-    }
-
-    /**
-     * Return array of directories, that contain resources for translator.
-     * @return string[]
-     */
-    public function getTranslationResources()
-    {
-        return [__DIR__ . '/../lang/'];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Crm\RempCampaignModule\Tests;
 
+use Contributte\Translation\Translator;
 use Crm\ApplicationModule\Event\EventsStorage;
 use Crm\ApplicationModule\Tests\DatabaseTestCase;
 use Crm\PaymentsModule\Events\RecurrentPaymentRenewedEvent;
@@ -18,7 +19,6 @@ use Crm\SubscriptionsModule\Events\NewSubscriptionEvent;
 use Crm\SubscriptionsModule\Events\SubscriptionEndsEvent;
 use Crm\UsersModule\Events\UserRegisteredEvent;
 use Crm\UsersModule\Repository\UsersRepository;
-use Kdyby\Translation\Translator;
 use League\Event\Emitter;
 use Tomaj\Hermes\Dispatcher;
 
