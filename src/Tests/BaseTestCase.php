@@ -78,7 +78,7 @@ abstract class BaseTestCase extends DatabaseTestCase
         $eventsStorage->register('subscription_ends', SubscriptionEndsEvent::class, true);
         $eventsStorage->register('recurrent_payment_renewed', RecurrentPaymentRenewedEvent::class, true);
         $this->scenariosModule->registerHermesHandlers($this->dispatcher);
-        $this->rempCampaignModule->registerEventHandlers($this->emitter);
+        $this->rempCampaignModule->registerLazyEventHandlers($this->emitter);
 
         $this->engine = $this->inject(Engine::class);
     }
