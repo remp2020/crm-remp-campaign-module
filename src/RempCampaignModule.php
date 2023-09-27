@@ -10,7 +10,6 @@ use Crm\ApplicationModule\CrmModule;
 use Crm\RempCampaignModule\Api\ListBannersHandler;
 use Crm\RempCampaignModule\Events\BannerHandler;
 use Crm\ScenariosModule\Events\BannerEvent;
-use League\Event\Emitter;
 
 class RempCampaignModule extends CrmModule
 {
@@ -32,8 +31,8 @@ class RempCampaignModule extends CrmModule
         );
     }
 
-    public function registerEventHandlers(Emitter $emitter)
+    public function registerLazyEventHandlers(\Crm\ApplicationModule\Event\LazyEventEmitter $emitter)
     {
-        $emitter->addListener(BannerEvent::class, $this->getInstance(BannerHandler::class));
+        $emitter->addListener(BannerEvent::class, BannerHandler::class);
     }
 }
