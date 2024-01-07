@@ -2,7 +2,7 @@
 
 namespace Crm\RempCampaignModule\Api;
 
-use Crm\ApiModule\Api\ApiHandler;
+use Crm\ApiModule\Models\Api\ApiHandler;
 use Crm\RempCampaignModule\Models\Campaign\Api;
 use Nette\Http\Response;
 use Tomaj\NetteApi\Response\JsonApiResponse;
