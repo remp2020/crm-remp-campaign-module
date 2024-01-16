@@ -7,6 +7,7 @@ use Crm\ApiModule\Authorization\BearerTokenAuthorization;
 use Crm\ApiModule\Router\ApiIdentifier;
 use Crm\ApiModule\Router\ApiRoute;
 use Crm\ApplicationModule\CrmModule;
+use Crm\ApplicationModule\Event\LazyEventEmitter;
 use Crm\RempCampaignModule\Api\ListBannersHandler;
 use Crm\RempCampaignModule\Events\BannerHandler;
 use Crm\ScenariosModule\Events\BannerEvent;
@@ -31,7 +32,7 @@ class RempCampaignModule extends CrmModule
         );
     }
 
-    public function registerLazyEventHandlers(\Crm\ApplicationModule\Event\LazyEventEmitter $emitter)
+    public function registerLazyEventHandlers(LazyEventEmitter $emitter)
     {
         $emitter->addListener(BannerEvent::class, BannerHandler::class);
     }
