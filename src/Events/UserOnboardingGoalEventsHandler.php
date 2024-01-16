@@ -6,7 +6,7 @@ use Crm\OnboardingModule\Events\UserOnboardingGoalCompletedEvent;
 use Crm\OnboardingModule\Events\UserOnboardingGoalCreatedEvent;
 use Crm\OnboardingModule\Events\UserOnboardingGoalTimedoutEvent;
 use Crm\OnboardingModule\Models\OnboardingGoalSegment;
-use Crm\OnboardingModule\Repository\OnboardingGoalsRepository;
+use Crm\OnboardingModule\Repositories\OnboardingGoalsRepository;
 use Crm\RempCampaignModule\Models\Campaign\Api;
 use League\Event\AbstractListener;
 use League\Event\EventInterface;
