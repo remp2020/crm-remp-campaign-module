@@ -18,7 +18,7 @@ use Crm\ScenariosModule\ScenariosModule;
 use Crm\SubscriptionsModule\Events\NewSubscriptionEvent;
 use Crm\SubscriptionsModule\Events\SubscriptionEndsEvent;
 use Crm\UsersModule\Events\UserRegisteredEvent;
-use Crm\UsersModule\Repository\UsersRepository;
+use Crm\UsersModule\Repositories\UsersRepository;
 use League\Event\Emitter;
 use Tomaj\Hermes\Dispatcher;
 

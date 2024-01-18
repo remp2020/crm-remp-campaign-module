@@ -6,7 +6,7 @@ use Crm\RempCampaignModule\Models\Campaign\Api;
 use Crm\ScenariosModule\Repositories\ElementsRepository;
 use Crm\ScenariosModule\Repositories\ScenariosRepository;
 use Crm\ScenariosModule\Repositories\TriggersRepository;
-use Crm\UsersModule\Auth\UserManager;
+use Crm\UsersModule\Models\Auth\UserManager;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
