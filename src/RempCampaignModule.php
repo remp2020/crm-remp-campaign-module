@@ -7,7 +7,7 @@ use Crm\ApiModule\Models\Authorization\BearerTokenAuthorization;
 use Crm\ApiModule\Models\Router\ApiIdentifier;
 use Crm\ApiModule\Models\Router\ApiRoute;
 use Crm\ApplicationModule\CrmModule;
-use Crm\ApplicationModule\Event\LazyEventEmitter;
+use Crm\ApplicationModule\Models\Event\LazyEventEmitter;
 use Crm\RempCampaignModule\Api\ListBannersHandler;
 use Crm\RempCampaignModule\Events\BannerHandler;
 use Crm\ScenariosModule\Events\BannerEvent;

@@ -2,7 +2,7 @@
 
 namespace Crm\RempCampaignModule\Models\Campaign;
 
-use Crm\ApplicationModule\NowTrait;
+use Crm\ApplicationModule\Models\NowTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Nette\Http\IResponse;

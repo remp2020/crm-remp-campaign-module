@@ -3,7 +3,7 @@
 namespace Crm\RempCampaignModule\Tests;
 
 use Contributte\Translation\Translator;
-use Crm\ApplicationModule\Event\EventsStorage;
+use Crm\ApplicationModule\Models\Event\EventsStorage;
 use Crm\ApplicationModule\Tests\DatabaseTestCase;
 use Crm\PaymentsModule\Events\RecurrentPaymentRenewedEvent;
 use Crm\RempCampaignModule\RempCampaignModule;
