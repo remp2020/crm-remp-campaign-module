@@ -12,3 +12,6 @@ services:
 	- Crm\RempCampaignModule\Api\ListBannersHandler
 	- Crm\RempCampaignModule\Events\BannerHandler
 	- Crm\RempCampaignModule\Models\Campaign\Api(%remp.campaign.host%, %remp.apiToken%)
+
+	# Hermes
+	- Crm\RempCampaignModule\Hermes\OnboardingSegmentCacheHandler

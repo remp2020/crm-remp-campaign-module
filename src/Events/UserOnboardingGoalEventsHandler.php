@@ -2,27 +2,22 @@
 
 namespace Crm\RempCampaignModule\Events;
 
+use Crm\ApplicationModule\Hermes\HermesMessage;
 use Crm\OnboardingModule\Events\UserOnboardingGoalCompletedEvent;
 use Crm\OnboardingModule\Events\UserOnboardingGoalCreatedEvent;
 use Crm\OnboardingModule\Events\UserOnboardingGoalTimedoutEvent;
 use Crm\OnboardingModule\Models\OnboardingGoalSegment;
 use Crm\OnboardingModule\Repositories\OnboardingGoalsRepository;
-use Crm\RempCampaignModule\Models\Campaign\Api;
 use League\Event\AbstractListener;
 use League\Event\EventInterface;
+use Tomaj\Hermes\Emitter;
 
 class UserOnboardingGoalEventsHandler extends AbstractListener
 {
-    private $campaignApiClient;
-
-    private $onboardingGoalsRepository;
-
     public function __construct(
-        Api $campaignApiClient,
-        OnboardingGoalsRepository $onboardingGoalsRepository
+        private readonly OnboardingGoalsRepository $onboardingGoalsRepository,
+        private readonly Emitter $hermesEmitter
     ) {
-        $this->campaignApiClient = $campaignApiClient;
-        $this->onboardingGoalsRepository = $onboardingGoalsRepository;
     }
 
     public function handle(EventInterface $event)
@@ -41,10 +36,10 @@ class UserOnboardingGoalEventsHandler extends AbstractListener
         $onboardingGoal = $this->onboardingGoalsRepository->find($userOnboardingGoal->onboarding_goal_id);
         $segmentCode = OnboardingGoalSegment::getSegmentCode($onboardingGoal->code);
 
-        if ($flagAddUser) {
-            $this->campaignApiClient->segmentCacheAddUser($userId, $segmentCode);
-        } else {
-            $this->campaignApiClient->segmentCacheRemoveUser($userId, $segmentCode);
-        }
+        $this->hermesEmitter->emit(new HermesMessage('onboarding-segment-cache', [
+            'action' => $flagAddUser ? 'add' : 'remove',
+            'user_id' => $userId,
+            'segment_code' => $segmentCode,
+        ]), HermesMessage::PRIORITY_DEFAULT);
     }
 }
