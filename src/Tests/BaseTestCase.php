@@ -4,6 +4,7 @@ namespace Crm\RempCampaignModule\Tests;
 
 use Contributte\Translation\Translator;
 use Crm\ApplicationModule\Models\Event\EventsStorage;
+use Crm\ApplicationModule\Models\Scenario\TriggerManager;
 use Crm\ApplicationModule\Tests\DatabaseTestCase;
 use Crm\PaymentsModule\Events\RecurrentPaymentRenewedEvent;
 use Crm\RempCampaignModule\RempCampaignModule;
@@ -78,6 +79,7 @@ abstract class BaseTestCase extends DatabaseTestCase
         $eventsStorage->register('subscription_ends', SubscriptionEndsEvent::class, true);
         $eventsStorage->register('recurrent_payment_renewed', RecurrentPaymentRenewedEvent::class, true);
         $this->scenariosModule->registerHermesHandlers($this->dispatcher);
+        $this->scenariosModule->registerScenariosTriggers($this->inject(TriggerManager::class));
         $this->rempCampaignModule->registerLazyEventHandlers($this->emitter);
 
         $this->engine = $this->inject(Engine::class);
