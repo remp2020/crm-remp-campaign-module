@@ -16,13 +16,6 @@ use Tomaj\Hermes\Dispatcher;
 
 class RempCampaignModule extends CrmModule
 {
-    private $services = [];
-
-    public function linkService($key, $host)
-    {
-        $this->services[$key] = $host;
-    }
-
     public function registerApiCalls(ApiRoutersContainerInterface $apiRoutersContainer)
     {
         $apiRoutersContainer->attachRouter(
