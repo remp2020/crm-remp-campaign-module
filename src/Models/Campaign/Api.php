@@ -25,7 +25,7 @@ class Api
             'headers' => [
                 'Authorization' => 'Bearer ' . $apiToken,
                 'Accept' => 'application/json',
-            ]
+            ],
         ]);
     }
 
@@ -61,7 +61,7 @@ class Api
 
             $payload = [
                 'user_id' => (string) $userId,
-                'expires_at' => $expiresAt->format(DATE_RFC3339)
+                'expires_at' => $expiresAt->format(DATE_RFC3339),
             ];
 
             $this->client->post(self::showOneTimeBannerUriPath($bannerId), [

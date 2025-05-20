@@ -16,7 +16,7 @@ class UserOnboardingGoalEventsHandler extends AbstractListener
 {
     public function __construct(
         private readonly OnboardingGoalsRepository $onboardingGoalsRepository,
-        private readonly Emitter $hermesEmitter
+        private readonly Emitter $hermesEmitter,
     ) {
     }
 

@@ -22,8 +22,8 @@ class RempCampaignModule extends CrmModule
             new ApiRoute(
                 new ApiIdentifier('1', 'remp', 'list-banners'),
                 ListBannersHandler::class,
-                BearerTokenAuthorization::class
-            )
+                BearerTokenAuthorization::class,
+            ),
         );
     }
 
@@ -36,7 +36,7 @@ class RempCampaignModule extends CrmModule
     {
         $dispatcher->registerHandler(
             'onboarding-segment-cache',
-            $this->getInstance(OnboardingSegmentCacheHandler::class)
+            $this->getInstance(OnboardingSegmentCacheHandler::class),
         );
     }
 }

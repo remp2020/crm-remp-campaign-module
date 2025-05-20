@@ -50,8 +50,8 @@ class BannerScenariosTest extends BaseTestCase
                     'type' => TriggersRepository::TRIGGER_TYPE_EVENT,
                     'id' => 'trigger1',
                     'event' => ['code' => 'user_registered'],
-                    'elements' => ['element_banner']
-                ])
+                    'elements' => ['element_banner'],
+                ]),
             ],
             'elements' => [
                 self::obj([
@@ -61,9 +61,9 @@ class BannerScenariosTest extends BaseTestCase
                     'banner' => [
                         'id' => self::BANNER_ID,
                         'expiresInMinutes' => $expiresInMinutes,
-                    ]
-                ])
-            ]
+                    ],
+                ]),
+            ],
         ]);
 
         // Add user, which triggers scenario
@@ -73,7 +73,7 @@ class BannerScenariosTest extends BaseTestCase
         $container = [];
         $history = Middleware::history($container);
         $handler = HandlerStack::create(new MockHandler([
-            new Response(202)
+            new Response(202),
         ]));
         $handler->push($history);
         $client = new Client(['handler' => $handler]);

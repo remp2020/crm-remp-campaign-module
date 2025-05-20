@@ -50,7 +50,7 @@ abstract class BaseTestCase extends DatabaseTestCase
             TriggerElementsRepository::class,
             TriggersRepository::class,
             ElementElementsRepository::class,
-            ElementsRepository::class
+            ElementsRepository::class,
         ];
     }
 
