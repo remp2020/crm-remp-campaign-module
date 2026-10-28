@@ -3,7 +3,7 @@
 namespace Crm\RempCampaignModule;
 
 use Crm\ApiModule\Models\Api\ApiRoutersContainerInterface;
-use Crm\ApiModule\Models\Authorization\BearerTokenAuthorization;
+use Crm\ApiModule\Models\Authorization\AdminLoggedOrBearerTokenAuthorization;
 use Crm\ApiModule\Models\Router\ApiIdentifier;
 use Crm\ApiModule\Models\Router\ApiRoute;
 use Crm\ApplicationModule\CrmModule;
@@ -22,7 +22,7 @@ class RempCampaignModule extends CrmModule
             new ApiRoute(
                 new ApiIdentifier('1', 'remp', 'list-banners'),
                 ListBannersHandler::class,
-                BearerTokenAuthorization::class,
+                AdminLoggedOrBearerTokenAuthorization::class,
             ),
         );
     }
